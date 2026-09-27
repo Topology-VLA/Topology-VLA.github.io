@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071b1c">
+  <meta name="color-scheme" content="light">
+
+  <title>Topology-Informed Visual Prompting for Hierarchical Vision-Language-Action Control</title>
+  <meta name="description" content="A topology-guided framework that uses simulation-based data generation and closed-loop visual prompting to help vision-language-action policies recover from topological mismatches.">
+  <meta name="keywords" content="robotics, vision-language-action models, VLA, visual prompting, topology, manipulation, robot learning">
+  <meta name="author" content="Haoyang Wu, Abhinav Kumar, Dmitry Berenson">
+  <link rel="canonical" href="https://topology-vla.github.io/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Topology VLA">
+  <meta property="og:title" content="Topology-Informed Visual Prompting for Hierarchical Vision-Language-Action Control">
+  <meta property="og:description" content="Topology tells a robot when reaching the same goal requires a qualitatively different motion.">
+  <meta property="og:url" content="https://topology-vla.github.io/">
+  <meta property="og:image" content="https://topology-vla.github.io/static/images/social_preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Topology-informed visual prompts guide a robot around an obstacle">
+  <meta property="article:published_time" content="2026-09-27">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Topology-Informed Visual Prompting for Hierarchical VLA Control">
+  <meta name="twitter:description" content="Closed-loop topological reasoning for vision-language-action robot control.">
+  <meta name="twitter:image" content="https://topology-vla.github.io/static/images/social_preview.jpg">
+
+  <meta name="citation_title" content="Topology-Informed Visual Prompting for Hierarchical Vision-Language-Action Control">
+  <meta name="citation_author" content="Wu, Haoyang">
+  <meta name="citation_author" content="Kumar, Abhinav">
+  <meta name="citation_author" content="Berenson, Dmitry">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_pdf_url" content="https://topology-vla.github.io/static/pdfs/paper.pdf">
+
+  <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Topology-Informed Visual Prompting for Hierarchical Vision-Language-Action Control",
+    "description": "A topology-guided framework for simulation-based data generation and closed-loop visual prompting of vision-language-action policies.",
+    "author": [
+      {"@type": "Person", "name": "Haoyang Wu"},
+      {"@type": "Person", "name": "Abhinav Kumar"},
+      {"@type": "Person", "name": "Dmitry Berenson"}
+    ],
+    "datePublished": "2026",
+    "url": "https://topology-vla.github.io/",
+    "image": "https://topology-vla.github.io/static/images/social_preview.jpg",
+    "isAccessibleForFree": true,
+    "affiliation": {"@type": "Organization", "name": "University of Michigan Robotics"}
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Topology VLA home">
+        <svg class="brand-mark" viewBox="0 0 46 32" aria-hidden="true">
+          <path d="M3 17c5-14 15-14 21 0s16 14 19 0"/>
+          <path d="M3 15c5 14 15 14 21 0s16-14 19 0"/>
+        </svg>
+        <span>Topology <b>VLA</b></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span><span class="sr-only">Toggle navigation</span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#idea">Idea</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#videos">Videos</a>
+        <a class="nav-paper" href="static/pdfs/paper.pdf">Paper <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="hero-shell" id="top">
+      <div class="topo-grid" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Topology-aware robot manipulation</p>
+          <h1>Topology-Informed<br><em>Visual Prompting</em></h1>
+          <p class="hero-subtitle">for Hierarchical Vision-Language-Action Control</p>
+          <p class="hero-deck">A robot can see the goal and still take the wrong side of an obstacle. We make the missing topological relationship explicit—and turn it into visual guidance a VLA can follow.</p>
+
+          <div class="authors" aria-label="Authors">
+            <a href="mailto:haoyangw@umich.edu">Haoyang Wu</a>
+            <span>·</span>
+            <a href="mailto:abhin@umich.edu">Abhinav Kumar</a>
+            <span>·</span>
+            <a href="https://berenson.robotics.umich.edu/" target="_blank" rel="noopener">Dmitry Berenson</a>
+          </div>
+          <a class="affiliation" href="https://robotics.umich.edu/" target="_blank" rel="noopener">Robotics Department · University of Michigan</a>
+
+          <div class="hero-actions">
+            <a class="button-primary" href="static/pdfs/paper.pdf">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6zM14 2v5h5M9 13h6M9 17h6"/></svg>
+              Read the paper
+            </a>
+            <a class="button-secondary" href="#videos">
+              <span class="play-icon" aria-hidden="true">▶</span>
+              Watch demos
+            </a>
+            <a class="button-text" href="static/pdfs/supplementary.pdf">Supplementary <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="hero-media reveal">
+          <div class="video-frame">
+            <div class="frame-label"><span class="live-dot"></span> Real-world execution · 2×</div>
+            <video autoplay muted loop playsinline preload="metadata" poster="static/images/hardware_poster.jpg" aria-label="Robot corrects its path around a rack post and picks up a box">
+              <source src="static/videos/hardware_pickup.mp4" type="video/mp4">
+            </video>
+            <div class="frame-caption">
+              <span>Closed-loop guidance</span>
+              <span>Box pickup</span>
+            </div>
+          </div>
+          <div class="loop-orbit orbit-a" aria-hidden="true"></div>
+          <div class="loop-orbit orbit-b" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="metric-strip">
+        <div class="container metric-grid">
+          <div><strong>+40<small> pp</small></strong><span>hardware task success<br>over the strongest baseline</span></div>
+          <div><strong>3</strong><span>simulated bimanual<br>manipulation tasks</span></div>
+          <div><strong>83%</strong><span>topology-correction<br>success on hardware</span></div>
+          <div><strong>2</strong><span>VLA backbones:<br>π<sub>0</sub> and π<sub>0.5</sub></span></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section section-abstract" id="idea">
+      <div class="container narrow-grid">
+        <div class="section-label reveal">
+          <span>01</span>
+          <p>The idea</p>
+        </div>
+        <div class="abstract-copy reveal">
+          <p class="lead">Similar-looking configurations can demand qualitatively different actions.</p>
+          <p>Agentic robot systems often separate high-level reasoning from low-level visuomotor control. The interface between them matters: partial views of obstacle geometry can hide topological relationships that determine whether the robot should move directly toward a goal or first route around an obstacle.</p>
+          <p>Our framework uses a virtual <i>h</i>-signature derived from the Gauss linking integral. In approximate simulation, it identifies topological mismatches and generates targeted correction data. At deployment, a vision-language model estimates the signature and predicts image-space waypoints; a VLA executes the visually prompted action, and the guidance is recomputed after every action chunk.</p>
+          <div class="concept-pills" aria-label="Core concepts">
+            <span>Topology-aware data</span>
+            <span>VLM reasoning</span>
+            <span>Visual waypoint prompts</span>
+            <span>Closed-loop VLA control</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section visual-explainer">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <p class="kicker">One goal, two topologies</p>
+          <h2>The right motion depends on <em>how things are linked</em></h2>
+          <p>With the demonstrated signature, the prompt points directly to the handle. With a mismatched signature, it first routes the end effector around the rack post.</p>
+        </div>
+        <figure class="paper-figure reveal">
+          <img src="static/images/teaser.jpg" width="1800" height="1486" loading="lazy" alt="Comparison of direct and topology-correcting visual prompts for box pickup">
+          <figcaption><span>Green</span> indicates task continuation; <span class="cyan">cyan</span> indicates topology correction. Dashed virtual links close the task-relevant loops used to compute the signature.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section method-section" id="method">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">The method</p>
+          <h2>Reason in topology.<br><em>Act through pixels.</em></h2>
+          <p class="heading-copy">Topology bridges privileged simulation geometry and visual deployment without changing the VLA architecture.</p>
+        </div>
+
+        <figure class="method-figure reveal">
+          <img src="static/images/method_overview.png" width="2830" height="1399" loading="lazy" alt="Training and deployment pipeline for topology-informed visual prompting">
+        </figure>
+
+        <div class="step-grid">
+          <article class="step-card reveal">
+            <span class="step-number">01</span>
+            <div class="step-icon loop-icon" aria-hidden="true"></div>
+            <h3>Find the mismatch</h3>
+            <p>Privileged simulator geometry computes the virtual <i>h</i>-signature and identifies states whose topology differs from the demonstration.</p>
+          </article>
+          <article class="step-card reveal">
+            <span class="step-number">02</span>
+            <div class="step-icon arrow-icon" aria-hidden="true">↗</div>
+            <h3>Generate corrections</h3>
+            <p>Targeted trajectories first restore the demonstrated signature, then continue the task. Their projected paths supervise visual prompts.</p>
+          </article>
+          <article class="step-card reveal">
+            <span class="step-number">03</span>
+            <div class="step-icon cycle-icon" aria-hidden="true">↻</div>
+            <h3>Guide in closed loop</h3>
+            <p>A VLM predicts the current signature and waypoints. The VLA follows the overlay, then both predictions update from the next observation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section results-section" id="results">
+      <div class="container">
+        <div class="results-intro">
+          <div class="section-heading light reveal">
+            <p class="kicker">Results</p>
+            <h2>Topology helps most<br><em>when geometry misleads.</em></h2>
+          </div>
+          <p class="results-summary reveal">Across cable threading and box pickup, topology-informed prompting substantially improves task success over a nominally fine-tuned VLA and PEEK. On rope pulling—where no signature correction is required—the method remains competitive.</p>
+        </div>
+
+        <div class="result-highlights">
+          <article class="highlight-card mint reveal">
+            <p>Real-world box pickup</p>
+            <strong>60%</strong>
+            <span>task success</span>
+            <div class="comparison-line"><i style="width:60%"></i></div>
+            <small>Base policy: 20% · PEEK: 3%</small>
+          </article>
+          <article class="highlight-card cyan-card reveal">
+            <p>Hardware topology correction</p>
+            <strong>83%</strong>
+            <span>correction success</span>
+            <div class="comparison-line"><i style="width:83%"></i></div>
+            <small>Base policy: 30% · PEEK: 20%</small>
+          </article>
+          <article class="highlight-card dark-card reveal">
+            <p>Simulation · π<sub>0.5</sub></p>
+            <strong>77%</strong>
+            <span>cable-threading success</span>
+            <div class="comparison-line"><i style="width:77%"></i></div>
+            <small>Base policy: 47% · PEEK: 20%</small>
+          </article>
+        </div>
+
+        <div class="table-card reveal">
+          <div class="table-title">
+            <div>
+              <p class="mono-label">SIMULATION TASK SUCCESS (%)</p>
+              <h3>Across tasks and VLA backbones</h3>
+            </div>
+            <div class="legend"><span class="ours-dot"></span> Ours <span class="base-dot"></span> Best baseline</div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr><th>Task</th><th>Backbone</th><th>Base policy</th><th>PEEK</th><th>Ours</th></tr>
+              </thead>
+              <tbody>
+                <tr><td rowspan="2">Rope Pulling</td><td>π<sub>0</sub></td><td class="best-base">70</td><td>54</td><td class="ours">66</td></tr>
+                <tr><td>π<sub>0.5</sub></td><td class="best-base">52</td><td>50</td><td class="ours">64</td></tr>
+                <tr><td rowspan="2">Cable Threading</td><td>π<sub>0</sub></td><td class="best-base">49</td><td>13</td><td class="ours">71</td></tr>
+                <tr><td>π<sub>0.5</sub></td><td class="best-base">47</td><td>20</td><td class="ours">77</td></tr>
+                <tr><td rowspan="2">Box Pickup</td><td>π<sub>0</sub></td><td>31</td><td class="best-base">57</td><td class="ours">84</td></tr>
+                <tr><td>π<sub>0.5</sub></td><td>45</td><td class="best-base">66</td><td class="ours">82</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">The best baseline is highlighted for comparison. Evaluation uses 50 Rope Pulling, 100 Cable Threading, and 100 Box Pickup simulation trials per reported setting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section videos-section" id="videos">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <p class="kicker">Task gallery</p>
+          <h2>See the policy <em>change its mind.</em></h2>
+          <p>From repetitive pulling to threading and obstacle-aware pickup, each task probes a different role for topological reasoning.</p>
+        </div>
+
+        <div class="video-grid">
+          <article class="video-card reveal">
+            <div class="video-wrap">
+              <video controls playsinline preload="none" poster="static/images/rope_poster.jpg">
+                <source src="static/videos/rope_pulling.mp4" type="video/mp4">
+              </video>
+              <span class="task-index">01</span>
+            </div>
+            <div class="video-copy">
+              <p class="mono-label">SINGLE SIGNATURE</p>
+              <h3>Rope Pulling</h3>
+              <p>Tests whether topology-aware training remains compatible when execution requires repeated bimanual manipulation but no signature transition.</p>
+            </div>
+          </article>
+
+          <article class="video-card reveal">
+            <div class="video-wrap">
+              <video controls playsinline preload="none" poster="static/images/threading_poster.jpg">
+                <source src="static/videos/cable_threading.mp4" type="video/mp4">
+              </video>
+              <span class="task-index">02</span>
+            </div>
+            <div class="video-copy">
+              <p class="mono-label">CORRECTION TO hᵛ = 1</p>
+              <h3>Cable Threading</h3>
+              <p>The policy must pass the cable through the target loop before moving its tip to the goal—a local shortcut cannot complete the task.</p>
+            </div>
+          </article>
+
+          <article class="video-card reveal">
+            <div class="video-wrap">
+              <video controls playsinline preload="none" poster="static/images/pickup_poster.jpg">
+                <source src="static/videos/box_pickup.mp4" type="video/mp4">
+              </video>
+              <span class="task-index">03</span>
+            </div>
+            <div class="video-copy">
+              <p class="mono-label">CORRECTION TO hᵛ = 0</p>
+              <h3>Box Pickup</h3>
+              <p>The robot routes around the rack post before grasping the box handles, preserving obstacle context instead of masking it away.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="full-video reveal">
+          <div class="full-video-heading">
+            <div>
+              <p class="mono-label">FULL VIDEO · 03:00</p>
+              <h3>Method, experiments, and hardware</h3>
+            </div>
+            <p>A complete walkthrough of topology-aware data generation, hierarchical deployment, simulation comparisons, and real-world results.</p>
+          </div>
+          <video controls playsinline preload="metadata" poster="static/images/social_preview.jpg">
+            <source src="static/videos/overview.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section class="section citation-section" id="citation">
+      <div class="container citation-grid">
+        <div class="section-heading reveal">
+          <p class="kicker">Citation</p>
+          <h2>Build on the idea.</h2>
+          <p class="heading-copy">Citation metadata will be updated when a public archival version is available.</p>
+        </div>
+        <div class="bibtex-card reveal">
+          <button class="copy-button" type="button" data-copy-target="bibtex" aria-label="Copy BibTeX citation">
+            <span class="copy-label">Copy BibTeX</span>
+          </button>
+          <pre id="bibtex"><code>@article{wu2026topology,
+  title   = {Topology-Informed Visual Prompting for
+             Hierarchical Vision-Language-Action Control},
+  author  = {Wu, Haoyang and Kumar, Abhinav and
+             Berenson, Dmitry},
+  year    = {2026},
+  note    = {Preprint}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#top">
+          <svg class="brand-mark" viewBox="0 0 46 32" aria-hidden="true"><path d="M3 17c5-14 15-14 21 0s16 14 19 0"/><path d="M3 15c5 14 15 14 21 0s16-14 19 0"/></svg>
+          <span>Topology <b>VLA</b></span>
+        </a>
+        <p>Topology-informed reasoning for robot manipulation.</p>
+      </div>
+      <div class="footer-links">
+        <a href="static/pdfs/paper.pdf">Paper</a>
+        <a href="static/pdfs/supplementary.pdf">Supplementary</a>
+        <a href="https://github.com/Topology-VLA/Topology-VLA.github.io" target="_blank" rel="noopener">Website source</a>
+      </div>
+      <p class="credits">Adapted from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a>, which draws from <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a>. Website design licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener">CC BY-SA 4.0</a>.</p>
+    </div>
+  </footer>
+
+  <script src="static/js/index.js"></script>
+</body>
+</html>
