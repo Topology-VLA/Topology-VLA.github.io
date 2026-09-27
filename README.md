@@ -7,8 +7,7 @@ The site is a static GitHub Pages project. Open `index.html` directly or serve t
 ## Structure
 
 - `index.html` — page content and metadata
-- `static/css/index.css` — project-specific visual design
-- `static/js/index.js` — mobile navigation, citation copy, and reveal effects
+- `static/css/index.css` — project-specific styling
 - `static/images/` — paper figures, social preview, and video posters
 - `static/videos/` — task demos and full overview
 - `static/pdfs/` — paper and supplementary material
