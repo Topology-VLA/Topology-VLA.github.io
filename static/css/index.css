@@ -114,12 +114,8 @@ body {
 
 .results-table {
   max-width: 760px;
-  margin: 1.5rem auto 0;
+  margin: 1.75rem auto 0;
   overflow-x: auto;
-  background: #fff;
-  border: 1px solid #dfe4e8;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(16, 35, 46, 0.06);
 }
 
 .results-grid {
@@ -127,27 +123,30 @@ body {
   min-width: 600px;
   margin: 0 !important;
   border-collapse: collapse;
-  font-size: 0.95rem;
+  border-top: 2px solid #1e6689;
+  border-bottom: 2px solid #1e6689;
+  background: #fff;
+  color: #222;
+  font-size: 0.98rem;
 }
 
 .results-grid th,
 .results-grid td {
-  padding: 0.8rem 1rem;
+  padding: 0.72rem 0.9rem;
   text-align: center !important;
   vertical-align: middle !important;
   border: 0;
-  border-bottom: 1px solid #e5e9ec;
 }
 
 .results-grid thead th {
-  color: #fff;
-  background: #243640;
-  border-color: #41535d;
+  color: #222;
+  background: #fff;
   font-weight: 600;
 }
 
-.results-grid thead tr:first-child th[colspan] {
-  border-bottom-color: #64747c;
+.results-grid thead tr:last-child th,
+.results-grid thead th[rowspan] {
+  border-bottom: 1.5px solid #1e6689;
 }
 
 .results-grid thead th:first-child,
@@ -159,29 +158,32 @@ body {
 }
 
 .results-grid .task-cell {
-  color: #263740;
-  background: #f3f6f7;
-  border-right: 1px solid #e0e6e9;
+  color: #222;
+  background: #fff;
   font-weight: 600;
 }
 
 .results-grid tbody + tbody tr:first-child > * {
-  border-top: 2px solid #cbd4d9;
+  border-top: 1px solid #b9c8cf;
 }
 
-.results-grid tbody:last-child tr:last-child > *,
-.hardware-results tbody tr:last-child > * {
-  border-bottom: 0;
+.results-grid tbody tr:not(:last-child) > td,
+.hardware-results tbody tr:not(:last-child) > * {
+  border-bottom: 1px solid #edf0f2;
 }
 
 .results-grid .ours-row > td,
 .results-grid .ours-row > th {
-  background: #eaf7fb;
+  background: #fff;
 }
 
 .results-grid .ours-row .method-cell,
 .results-grid .ours-row th[scope="row"] {
-  color: #075f6b;
+  color: #e98200;
+  font-weight: 700;
+}
+
+.results-grid strong {
   font-weight: 700;
 }
 
@@ -214,6 +216,10 @@ body {
 
 .hardware-results th:first-child {
   width: 38%;
+}
+
+.hardware-results thead th {
+  border-bottom: 1.5px solid #1e6689;
 }
 
 .citation-section pre {
