@@ -3,30 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Topology-informed visual prompting for hierarchical vision-language-action control.">
+  <meta name="description" content="Topology-informed visual prompting for vision-language-action policies under partial observability.">
   <meta name="keywords" content="robot manipulation, vision-language-action models, visual prompting, topology, robot learning">
   <meta name="author" content="Haoyang Wu, Abhinav Kumar, Dmitry Berenson">
   <meta name="theme-color" content="#ffffff">
 
-  <title>Topology-Informed Visual Prompting for Hierarchical Vision-Language-Action Control</title>
+  <title>Topology-Informed Visual Prompting for Vision-Language-Action Policies</title>
   <link rel="canonical" href="https://topology-vla.github.io/">
   <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Topology-Informed Visual Prompting for Hierarchical Vision-Language-Action Control">
-  <meta property="og:description" content="Closed-loop topological reasoning and visual prompting for VLA robot control.">
+  <meta property="og:title" content="Topology-Informed Visual Prompting for Vision-Language-Action Policies">
+  <meta property="og:description" content="Topology-guided data generation and visual prompting for VLA robot control.">
   <meta property="og:url" content="https://topology-vla.github.io/">
   <meta property="og:image" content="https://topology-vla.github.io/static/images/social_preview.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <meta name="citation_title" content="Topology-Informed Visual Prompting for Hierarchical Vision-Language-Action Control">
+  <meta name="citation_title" content="Topology-Informed Visual Prompting for Vision-Language-Action Policies">
   <meta name="citation_author" content="Wu, Haoyang">
   <meta name="citation_author" content="Kumar, Abhinav">
   <meta name="citation_author" content="Berenson, Dmitry">
-  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_publication_date" content="2027">
   <meta name="citation_pdf_url" content="https://topology-vla.github.io/static/pdfs/paper.pdf">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 </head>
@@ -39,7 +38,7 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">
               Topology-Informed Visual Prompting<br>
-              <span class="title-subline">for Hierarchical Vision-Language-Action Control</span>
+              <span class="title-subline">for Vision-Language-Action Policies</span>
             </h1>
 
             <div class="is-size-5 publication-authors">
@@ -50,17 +49,12 @@
             <div class="is-size-5 publication-authors">
               <span class="author-block">University of Michigan</span>
             </div>
-            <div class="is-size-4 publication-venue">Preprint · 2026</div>
+            <div class="is-size-4 publication-venue">ICRA 2027 Submission</div>
 
             <div class="publication-links buttons is-centered">
               <span class="link-block">
                 <a href="static/pdfs/paper.pdf" class="external-link button is-normal is-rounded is-dark">
                   <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="static/pdfs/supplementary.pdf" class="external-link button is-normal is-rounded is-dark">
-                  <span>Supplementary</span>
                 </a>
               </span>
               <span class="link-block">
@@ -94,13 +88,13 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Agentic robot systems often separate high-level reasoning from low-level visuomotor control, motivating intermediate representations that communicate task-relevant constraints between layers. We study this interface in manipulation tasks where partial observations of obstacle geometry can obscure topological relationships that require qualitatively different actions.
+              Vision-language-action policies can struggle with manipulation tasks involving complex obstacle geometries because they operate under partial observability. Similar visual observations or robot configurations can require qualitatively different actions, a distinction that can be quantified using topological signatures.
             </p>
             <p>
-              We present a topology-guided visual-prompting framework that uses simulation-based planning to augment a nominal demonstration dataset and provides vision-based guidance at deployment. A virtual <i>h</i>-signature based on the Gauss linking integral captures task-relevant topological relationships. In approximate simulation, the signature identifies mismatches and generates targeted correction and task-continuation demonstrations.
+              Motion planners can reason about these signatures when environment geometry and object states are known, but this information is often unavailable at deployment. We address this gap with a topology-guided visual-prompting framework that uses simulation-based planning to augment a nominal demonstration dataset and provides vision-based guidance at deployment.
             </p>
             <p>
-              At deployment, a vision-language model estimates the current signature and predicts image-space end-effector waypoints. Recomputing both after each VLA action chunk produces a closed-loop hierarchical policy. Across three simulated bimanual tasks and a real-world box-pickup task, our method outperforms a VLA fine-tuned only on nominal demonstrations and a VLM-prompting baseline. On hardware, it improves task success by 40 percentage points over the strongest baseline.
+              Our method uses a Gauss-linking-integral topological signature to augment VLA fine-tuning data with trajectories that correct signature mismatches and resume task execution. A VLM predicts signatures from live camera observations and end-effector waypoints that are rendered as visual prompts for the VLA. Across three simulated bimanual tasks and a real-world box-pickup task, our method outperforms a VLA fine-tuned only on nominal demonstrations and a VLM-prompting baseline. On hardware, it improves task success by 40 percentage points over the strongest baseline.
             </p>
           </div>
         </div>
@@ -151,8 +145,14 @@
           <p class="section-description">
             Task success across two VLA backbones. Each setting uses 50 Rope Pulling, 100 Cable Threading, or 100 Box Pickup trials.
           </p>
-          <div class="table-container results-table">
-            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+          <div class="results-table" role="region" aria-label="Simulation results" tabindex="0">
+            <table class="results-grid simulation-results">
+              <colgroup>
+                <col class="task-column">
+                <col class="method-column">
+                <col class="score-column">
+                <col class="score-column">
+              </colgroup>
               <thead>
                 <tr>
                   <th rowspan="2">Task</th>
@@ -164,16 +164,20 @@
                   <th>π<sub>0.5</sub></th>
                 </tr>
               </thead>
-              <tbody>
-                <tr><td rowspan="3">Rope Pulling</td><td>Base Policy</td><td><strong>70</strong></td><td>52</td></tr>
-                <tr><td>PEEK</td><td>54</td><td>50</td></tr>
-                <tr class="ours-row"><td>Ours</td><td>66</td><td><strong>64</strong></td></tr>
-                <tr><td rowspan="3">Cable Threading</td><td>Base Policy</td><td>49</td><td>47</td></tr>
-                <tr><td>PEEK</td><td>13</td><td>20</td></tr>
-                <tr class="ours-row"><td>Ours</td><td><strong>71</strong></td><td><strong>77</strong></td></tr>
-                <tr><td rowspan="3">Box Pickup</td><td>Base Policy</td><td>31</td><td>45</td></tr>
-                <tr><td>PEEK</td><td>57</td><td>66</td></tr>
-                <tr class="ours-row"><td>Ours</td><td><strong>84</strong></td><td><strong>82</strong></td></tr>
+              <tbody class="task-group">
+                <tr><th class="task-cell" scope="rowgroup" rowspan="3">Rope Pulling</th><td class="method-cell">Base Policy</td><td><strong>70</strong></td><td>52</td></tr>
+                <tr><td class="method-cell">PEEK</td><td>54</td><td>50</td></tr>
+                <tr class="ours-row"><td class="method-cell">Ours</td><td>66</td><td><strong>64</strong></td></tr>
+              </tbody>
+              <tbody class="task-group">
+                <tr><th class="task-cell" scope="rowgroup" rowspan="3">Cable Threading</th><td class="method-cell">Base Policy</td><td>49</td><td>47</td></tr>
+                <tr><td class="method-cell">PEEK</td><td>13</td><td>20</td></tr>
+                <tr class="ours-row"><td class="method-cell">Ours</td><td><strong>71</strong></td><td><strong>77</strong></td></tr>
+              </tbody>
+              <tbody class="task-group">
+                <tr><th class="task-cell" scope="rowgroup" rowspan="3">Box Pickup</th><td class="method-cell">Base Policy</td><td>31</td><td>45</td></tr>
+                <tr><td class="method-cell">PEEK</td><td>57</td><td>66</td></tr>
+                <tr class="ours-row"><td class="method-cell">Ours</td><td><strong>84</strong></td><td><strong>82</strong></td></tr>
               </tbody>
             </table>
           </div>
@@ -222,8 +226,8 @@
             Your browser does not support the video tag.
           </video>
 
-          <div class="table-container results-table hardware-table">
-            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+          <div class="results-table hardware-table" role="region" aria-label="Real-world box pickup results" tabindex="0">
+            <table class="results-grid hardware-results">
               <thead>
                 <tr>
                   <th>Method</th>
@@ -232,9 +236,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Base Policy π<sub>0</sub></td><td>20%</td><td>30%</td></tr>
-                <tr><td>PEEK</td><td>3%</td><td>20%</td></tr>
-                <tr class="ours-row"><td><strong>Ours</strong></td><td><strong>60%</strong></td><td><strong>83%</strong></td></tr>
+                <tr><th scope="row">Base Policy π<sub>0</sub></th><td>20%</td><td>30%</td></tr>
+                <tr><th scope="row">PEEK</th><td>3%</td><td>20%</td></tr>
+                <tr class="ours-row"><th scope="row">Ours</th><td><strong>60%</strong></td><td><strong>83%</strong></td></tr>
               </tbody>
             </table>
           </div>
@@ -249,12 +253,13 @@
       <div class="columns is-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-3 has-text-centered">BibTeX</h2>
-          <pre><code>@article{wu2026topology,
+          <pre><code>@misc{wu2027topology,
   title  = {Topology-Informed Visual Prompting for
-            Hierarchical Vision-Language-Action Control},
+            Vision-Language-Action Policies},
   author = {Wu, Haoyang and Kumar, Abhinav and Berenson, Dmitry},
-  year   = {2026},
-  note   = {Preprint}
+  year   = {2027},
+  note   = {Submitted to the IEEE International Conference
+            on Robotics and Automation}
 }</code></pre>
         </div>
       </div>
