@@ -199,6 +199,27 @@ body {
   width: 20%;
 }
 
+.ablation-results .ablation-method-column {
+  width: 46%;
+}
+
+.ablation-results .ablation-score-column {
+  width: 18%;
+}
+
+.ablation-results thead th {
+  border-bottom: 1.5px solid #1e6689;
+}
+
+.results-summary {
+  max-width: 760px;
+  margin: 1rem auto 0;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
 .video-label {
   margin-top: 0.65rem;
   line-height: 1.4;
@@ -220,15 +241,6 @@ body {
 
 .hardware-results thead th {
   border-bottom: 1.5px solid #1e6689;
-}
-
-.citation-section pre {
-  padding: 1.5rem;
-  overflow-x: auto;
-  border-radius: 8px;
-  background: #f5f5f5;
-  font-size: 0.9rem;
-  text-align: left;
 }
 
 .footer {
@@ -271,7 +283,4 @@ body {
     padding: 0.7rem 0.75rem;
   }
 
-  .citation-section pre {
-    font-size: 0.72rem;
-  }
 }

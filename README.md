@@ -1,6 +1,6 @@
 # Topology VLA project website
 
-ICRA 2027 submission project page for **Topology-Informed Visual Prompting for Vision-Language-Action Policies** by Haoyang Wu, Abhinav Kumar, and Dmitry Berenson.
+Anonymous ICRA 2027 submission project page for **Topology-Informed Visual Prompting for Vision-Language-Action Policies**.
 
 The site is a static GitHub Pages project. Open `index.html` directly or serve the repository root with any static HTTP server.
 

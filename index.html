@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Topology-informed visual prompting for vision-language-action policies under partial observability.">
   <meta name="keywords" content="robot manipulation, vision-language-action models, visual prompting, topology, robot learning">
-  <meta name="author" content="Haoyang Wu, Abhinav Kumar, Dmitry Berenson">
+  <meta name="author" content="Anonymous Authors">
   <meta name="theme-color" content="#ffffff">
 
   <title>Topology-Informed Visual Prompting for Vision-Language-Action Policies</title>
@@ -20,9 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <meta name="citation_title" content="Topology-Informed Visual Prompting for Vision-Language-Action Policies">
-  <meta name="citation_author" content="Wu, Haoyang">
-  <meta name="citation_author" content="Kumar, Abhinav">
-  <meta name="citation_author" content="Berenson, Dmitry">
+  <meta name="citation_author" content="Anonymous Authors">
   <meta name="citation_publication_date" content="2027">
   <meta name="citation_pdf_url" content="https://topology-vla.github.io/static/pdfs/paper.pdf">
 
@@ -42,12 +40,7 @@
             </h1>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><a href="mailto:haoyangw@umich.edu">Haoyang Wu</a>,</span>
-              <span class="author-block"><a href="mailto:abhin@umich.edu">Abhinav Kumar</a>,</span>
-              <span class="author-block"><a href="https://berenson.robotics.umich.edu/" target="_blank" rel="noopener">Dmitry Berenson</a></span>
-            </div>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">University of Michigan</span>
+              <span class="author-block">Anonymous Authors</span>
             </div>
             <div class="is-size-4 publication-venue">ICRA 2027 Submission</div>
 
@@ -186,6 +179,45 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Ablation Results</h2>
+          <p class="section-description">
+            Task-success rates using the π<sub>0.5</sub> backbone.
+          </p>
+          <div class="results-table" role="region" aria-label="Ablation results" tabindex="0">
+            <table class="results-grid ablation-results">
+              <colgroup>
+                <col class="ablation-method-column">
+                <col class="ablation-score-column">
+                <col class="ablation-score-column">
+                <col class="ablation-score-column">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Rope Pulling</th>
+                  <th>Cable Threading</th>
+                  <th>Box Pickup</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="ours-row"><td class="method-cell">Full Method (Ours)</td><td><strong>64</strong></td><td><strong>77</strong></td><td><strong>82</strong></td></tr>
+                <tr><td class="method-cell">No Visual Prompting</td><td>52</td><td>69</td><td>75</td></tr>
+                <tr><td class="method-cell">Task-Continuation Data Only</td><td>N/A</td><td>24</td><td>54</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="results-summary">
+            Removing VLM-generated prompts reduces success across all three tasks, showing that augmented VLA training data alone is insufficient. Using only task-continuation data causes larger drops on tasks requiring signature correction, showing that topology also directs data generation toward relevant recovery states.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section task-videos">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -243,24 +275,6 @@
             </table>
           </div>
           <p class="section-description">Thirty real-world trials. All methods use the same real-world adaptation protocol.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section citation-section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3 has-text-centered">BibTeX</h2>
-          <pre><code>@misc{wu2027topology,
-  title  = {Topology-Informed Visual Prompting for
-            Vision-Language-Action Policies},
-  author = {Wu, Haoyang and Kumar, Abhinav and Berenson, Dmitry},
-  year   = {2027},
-  note   = {Submitted to the IEEE International Conference
-            on Robotics and Automation}
-}</code></pre>
         </div>
       </div>
     </div>
