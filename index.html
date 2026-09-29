@@ -211,7 +211,10 @@
             </table>
           </div>
           <p class="results-summary">
-            Removing VLM-generated prompts reduces success across all three tasks, showing that augmented VLA training data alone is insufficient. Using only task-continuation data causes larger drops on tasks requiring signature correction, showing that topology also directs data generation toward relevant recovery states.
+            N/A indicates that the Task-Continuation Data Only ablation is not applicable to Rope Pulling because the task requires no signature correction.
+          </p>
+          <p class="results-summary">
+            Removing VLM-generated prompts while retaining the same topology-aware training data reduces success across all three tasks, indicating that the VLM helps guide the VLA during execution. Using only task-continuation data causes larger drops on tasks requiring signature correction, showing that topology also directs data generation toward relevant recovery states.
           </p>
         </div>
       </div>
