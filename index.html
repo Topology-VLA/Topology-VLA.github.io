@@ -260,21 +260,26 @@
 
           <div class="results-table hardware-table" role="region" aria-label="Real-world box pickup results" tabindex="0">
             <table class="results-grid hardware-results">
+              <colgroup>
+                <col class="hardware-method-column">
+                <col class="hardware-task-column">
+                <col class="hardware-correction-column">
+              </colgroup>
               <thead>
                 <tr>
                   <th>Method</th>
-                  <th>Task success</th>
-                  <th><i>h</i><sup>v</sup>-correction success</th>
+                  <th>Task success (%)</th>
+                  <th><i>h</i><sup>v</sup>-correction success (%)</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Base Policy π<sub>0</sub></th><td>20%</td><td>30%</td></tr>
-                <tr><th scope="row">PEEK</th><td>3%</td><td>20%</td></tr>
-                <tr class="ours-row"><th scope="row">Ours</th><td><strong>60%</strong></td><td><strong>83%</strong></td></tr>
+                <tr><th scope="row">Base Policy π<sub>0</sub></th><td>20</td><td>30</td></tr>
+                <tr><th scope="row">PEEK</th><td>3</td><td>20</td></tr>
+                <tr class="ours-row"><th scope="row">Ours</th><td><strong>60</strong></td><td><strong>83</strong></td></tr>
               </tbody>
             </table>
           </div>
-          <p class="section-description">Thirty real-world trials. All methods use the same real-world adaptation protocol.</p>
+          <p class="hardware-note">Thirty real-world trials. All methods use the same real-world adaptation protocol.</p>
         </div>
       </div>
     </div>

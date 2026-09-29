@@ -235,12 +235,29 @@ body {
   margin-top: 2rem;
 }
 
-.hardware-results th:first-child {
-  width: 38%;
+.hardware-results .hardware-method-column {
+  width: 34%;
+}
+
+.hardware-results .hardware-task-column {
+  width: 27%;
+}
+
+.hardware-results .hardware-correction-column {
+  width: 39%;
 }
 
 .hardware-results thead th {
   border-bottom: 1.5px solid #1e6689;
+}
+
+.hardware-note {
+  max-width: 680px;
+  margin: 0.85rem auto 0;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  text-align: center;
 }
 
 .footer {
